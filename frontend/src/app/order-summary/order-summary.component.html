@@ -1,0 +1,19 @@
+<br />
+<br />
+<br />
+<br />
+<div class="col-2">
+  <div class="card" *ngFor="let s of summary">
+    <div class="card-body">
+      <h4 class="card-title">Order Summary</h4>
+      <h6 class="card-text" id="text">Full Name: {{ s.full_name }}</h6>
+      <h6 class="card-text" id="text">Movie Name: {{ s.name }}</h6>
+      <h6 class="card-text" id="text">Movie Time: {{ s.timings }}</h6>
+      <h6 class="card-text" id="text">Quantity: {{ s.quantity }}</h6>
+      <h6 class="card-text" id="text">Ticket price: {{ s.ticket_price }}</h6>
+      <h6 class="card-text" id="text">Total Price {{ s.total }}</h6>
+    </div>
+
+    <button type="button" (click)="backToMainPage()">Back to homepage</button>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<div class="container">
+  <form>
+    <br />
+    <label for="cardNumber">Card Number: </label>
+    <br />
+    <input
+      type="text"
+      id="cardNumber"
+      name="cardNumber"
+      #cardNumber="ngModel"
+      ngModel
+      placeholder="card number"
+      minlength="16"
+      maxlength="16"
+    />
+    <br />
+    <br />
+    <label for="expirationDate">Expiration Date: </label>
+    <br />
+    <br />
+
+    <input
+      type="month"
+      id="expirationDate"
+      #expirationDate="ngModel"
+      ngModel
+      name="expirationDate"
+      placeholder="Expiration Date"
+    />
+    <br />
+    <br />
+    <label for="cpin">Card Pin: </label>
+    <br />
+    <input
+      type="password"
+      id="cpin"
+      #cpin="ngModel"
+      ngModel
+      name="cpin"
+      placeholder="Card Pin"
+      minlength="4"
+      maxlength="4"
+    />
+    <br />
+    <br />
+    <button type="button" (click)="pay(cardNumber.value, expirationDate.value,cpin.value)">Submit</button>
+  </form>
+</div>

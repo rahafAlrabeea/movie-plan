@@ -1,0 +1,96 @@
+<h3>Edit Movie Details:</h3>
+
+<div>
+  <form>
+    <label for="id">Movie Id</label>
+
+    <input
+      type="text"
+      class="form-control"
+      #id="ngModel"
+      ngModel
+      name="id"
+      placeholder="Id.."
+    />
+
+    <label for="name">Movie Name</label>
+    <input
+      type="text"
+      class="form-control"
+      #name="ngModel"
+      ngModel
+      name="name"
+      placeholder="Name.."
+    />
+    <label for="description">Description</label>
+    <input
+      type="text"
+      class="form-control"
+      #description="ngModel"
+      ngModel
+      name="description"
+      placeholder="Description.."
+    />
+    <label for="language">Language</label>
+    <input
+      type="text"
+      class="form-control"
+      #language="ngModel"
+      ngModel
+      name="language"
+      placeholder="Language.."
+    />
+    <label for="ratings">Ratings</label>
+    <input
+      type="text"
+      class="form-control"
+      #ratings="ngModel"
+      ngModel
+      name="ratings"
+      placeholder="Ratings.."
+    />
+    <label for="ticket_price">Price</label>
+    <input
+      type="text"
+      class="form-control"
+      #ticket_price="ngModel"
+      ngModel
+      name="ticket_price"
+      placeholder="Price.."
+    />
+    <label for="timings">Timings</label>
+    <input
+      type="text"
+      class="form-control"
+      #timings="ngModel"
+      ngModel
+      name="timings"
+      placeholder="Timings.."
+    />
+    <label for="genre">Genre</label>
+    <select class="form-control" #genre="ngModel" ngModel name="genre">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+    </select>
+
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="
+        editMovie(
+          id.value,
+          name.value,
+          description.value,
+          language.value,
+          timings.value,
+          ratings.value,
+          genre.value,
+          ticket_price.value
+        )
+      "
+    >
+      Submit
+    </button>
+  </form>
+</div>

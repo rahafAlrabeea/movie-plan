@@ -1,0 +1,32 @@
+<div class="container">
+  <br />
+  <br />
+  <br />
+  <div class="form-group">
+    <label>Genre Id:</label>
+    <input type="text" class="form-control" #id="ngModel" ngModel name="id" />
+  </div>
+  <br />
+  <div class="form-group">
+    <label>Genre </label>
+    <input
+      type="text"
+      class="form-control"
+      #genre="ngModel"
+      ngModel
+      ngDefaultControl
+      name="genre"
+    />
+  </div>
+
+  <button
+    type="button"
+    class="btn btn-primary"
+    (click)="addGenre(id.value, genre.value)"
+  >
+    Submit
+  </button>
+  <button type="button" class="btn btn-primary" (click)="deleteGenre(id.value)">
+    Delete
+  </button>
+</div>

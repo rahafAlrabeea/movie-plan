@@ -1,0 +1,25 @@
+<br />
+<br />
+<br />
+<br />
+<button type="button" (click)="redirectToAddGenrePage()">Add Genre</button>
+<div class="col-2">
+  <div class="card" *ngFor="let m of movies">
+    <div class="card-body">
+      <h4 class="card-title">{{ m.name }}</h4>
+      <h6 class="card-text" id="text"></h6>
+      <h6 class="card-text">{{ m.description }}</h6>
+      <h6 class="card-text" id="text">
+        Rating of movie: {{ m.ratings }} Price per ticket: ${{
+          m.ticket_price
+        }}
+        Available showings:{{ m.timings }}
+      </h6>
+      <h6 class="card-text" id="text"></h6>
+      <p #m.movie_id="ngModel" ngModel ngDefaultControl name="movie_id"></p>
+      <button id="b" (click)="sendToEditPage(m.movie_id)">Edit</button>
+    </div>
+    <br />
+    <br />
+  </div>
+</div>
