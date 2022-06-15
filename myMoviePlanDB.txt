@@ -1,0 +1,79 @@
+CREATE SCHEMA `MyMoviePlan`;
+use MyMoviePlan;
+
+CREATE TABLE `users` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(200) NOT NULL,
+   `full_name` varchar(200) NOT NULL,
+  `password` varchar(55) NOT NULL,
+   primary key (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `users` (`email`,`full_name`,`password`) 
+VALUES ('rahaf-alrabeea@outlook.com','Rahaf Alrabeea','root'),
+( 'f-salam@gmail.com','Fatima Salam', 'pass1234'),
+('azoz_96@outlook.com', 'Abdulaziz Jassim', 'pass1234');
+
+CREATE TABLE `genres` (
+  `genre_id` int NOT NULL AUTO_INCREMENT,
+   `genre` Varchar(50) NOT NULL,
+   primary key (`genre_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `genres` ( `genre`) VALUES
+( 'Sci-Fi'),
+( 'Comedy'),
+( 'Action');
+
+
+
+CREATE TABLE `movies` (
+  `movie_id` int NOT NULL AUTO_INCREMENT,
+   `name` varchar(200) NOT NULL,
+  `ticket_price` decimal(5,2) NOT NULL,
+  `language` varchar(55) NOT NULL,
+   `description` varchar(500) NOT NULL,
+    `genre_id` int NOT NULL,
+	`ratings` int NOT NULL,
+    `timings` varchar(55) NOT NULL,
+   primary key (`movie_id`),
+foreign key (`genre_id`) references `genres`(`genre_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `movies` ( `name`,  `ticket_price`, `language`,`description`,`genre_id`,`ratings`,`timings`) VALUES
+( 'Deadpool(2016)', 10.00,'English','A wisecracking mercenary gets experimented on and becomes immortal but ugly, and sets out to track down the man who ruined his looks.',3,5,'18:30pm'),
+( 'Black Panther(2018)', 20.00,'English','Challa, heir to the hidden but advanced kingdom of Wakanda, must step forward to lead his people into a new future and must confront a challenger from his country`s past.',3,3,'11:30pm'),
+( 'Dont think twice(2016)', 10.00,'English','When a member of a popular New York City improv troupe gets a huge break, the rest of the group - all best friends - start to realize that not everyone is going to make it after all.',2,2,'16:30pm'),
+( 'Hot Rod(2007)', 08.00,'English','Self-proclaimed stuntman Rod Kimble is preparing for the jump of his life - to clear fifteen buses to raise money for his abusive stepfather Frank`s life-saving heart operation.',2,1,'20:00pm'),
+( 'Taken3(2014)', 20.00,'English','Accused of a ruthless murder he never committed or witnessed, Bryan Mills goes on the run and brings out his particular set of skills to find the true killer and clear his name.',3,5,'15:45pm'),
+( 'The 5th Wave(2016)', 15.00,'English','Four waves of increasingly deadly alien attacks have left most of Earth in ruin. Cassie is on the run, desperately trying to save her younger brother.',1,4,'11:00am'),
+( 'The Adam Project(2022)', 35.00,'English','After accidentally crash-landing in 2022, time-traveling fighter pilot Adam Reed teams up with his 12-year-old self for a mission to save the future.',1,5,'3:30am');
+
+CREATE TABLE `orders` (
+  `order_id` int NOT NULL AUTO_INCREMENT,
+   `date` Varchar(50) NOT NULL,
+  `user_id` int NOT NULL,
+ `movie_id` int NOT NULL,
+`quantity` INT NOT NULL,
+   primary key (`order_id`),
+   foreign key (`user_id`) references `users`(`user_id`),
+   foreign key (`movie_id`) references `movies`(`movie_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE 
+    ALGORITHM = UNDEFINED  
+    SQL SECURITY DEFINER
+VIEW `MyMoviePlan`.`booking_summary` AS
+    SELECT 
+        `u`.`full_name` AS `full_name`,
+        `u`.`email` AS `email`,
+        `m`.`name` AS `name`,
+        `m`.`timings` AS `timings`,
+        `o`.`quantity` AS `quantity`,
+        `m`.`ticket_price` AS `ticket_price`
+    FROM
+        ((`MyMoviePlan`.`users` `u`
+        JOIN `MyMoviePlan`.`movies` `m`)
+        JOIN `MyMoviePlan`.`orders` `o`)
+    WHERE
+        ((`u`.`user_id` = `o`.`user_id`)
+            AND (`m`.`movie_id` = `o`.`movie_id`));
